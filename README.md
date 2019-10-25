@@ -26,10 +26,11 @@
 [![Netlify Status][netlify-image]][netlify-url]
 [![CircleCI][circleci-image]][circleci-url]
 [![codecov][codecov-image]][codecov-url]
+[![This project is using Percy.io for visual regression testing.][percy-image]](percy-url)
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors)
 <!-- prettier-ignore-end -->
 
-## What?
+## About
 
 The OHIF Medical Imaging Viewer is for viewing medical images. It can retrieve
 and load images from most sources and formats; render sets in 2D, 3D, and
@@ -123,8 +124,7 @@ window.config = {
   `window.OHIFStandaloneViewer.installViewer(window.config);`
 
 This exact setup is demonstrated in this
-[CodeSandbox](https://codesandbox.io/s/ohif-viewer-script-tag-usage-c4u4t) and
-in our
+[CodeSandbox](https://codesandbox.io/s/viewer-script-tag-tprch) and in our
 [Embedding The Viewer](https://docs.ohif.org/deployment/recipes/embedded-viewer.html)
 deployment recipe.
 
@@ -133,7 +133,7 @@ deployment recipe.
 ### Requirements
 
 - [Yarn 1.17.3+](https://yarnpkg.com/en/docs/install)
-- [Node 8+](https://nodejs.org/en/)
+- [Node 10+](https://nodejs.org/en/)
 - Yarn Workspaces should be enabled on your machine:
   - `yarn config set workspaces-experimental true`
 
@@ -215,12 +215,12 @@ more about it in our [Architecture Documentation][ohif-architecture].
 
 These projects comprise the
 
-| Name                            | Description | Links |
-| ------------------------------- | ----------- | ----- |
-| [@ohif/core][platform-core]     |             | NPM   |
-| [@ohif/i18n][platform-i18n]     |             | NPM   |
-| [@ohif/viewer][platform-viewer] |             | NPM   |
-| [@ohif/ui][platform-ui]         |             | NPM   |
+| Name                            | Description                                                                                          | Links             |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------- |
+| [@ohif/core][platform-core]     | Business logic and classes that model the data, services, and extensions that are framework agnostic | [NPM][core-npm]   |
+| [@ohif/i18n][platform-i18n]     | Language files and small API for wrapping component/ui text for translations                         | [NPM][i18n-npm]   |
+| [@ohif/viewer][platform-viewer] | The OHIF Viewer. Where we consume and configure all platform library's and extensions                | [NPM][viewer-npm] |
+| [@ohif/ui][platform-ui]         | Reusable React components we consume and compose to build our Viewer's UI                            | [NPM][ui-npm]     |
 
 ### Extensions
 
@@ -228,13 +228,13 @@ This is a list of Extensions maintained by the OHIF Core team. It's possible to
 customize and configure these extensions, and you can even create your own. You
 can [read more about extensions here][ohif-extensions].
 
-| Name                                                           | Description | Links |
-| -------------------------------------------------------------- | ----------- | ----- |
-| [@ohif/extension-cornestone][extension-cornerstone]            |             | NPM   |
-| [@ohif/extension-dicom-html][extension-dicom-html]             |             | NPM   |
-| [@ohif/extension-dicom-microscopy][extension-dicom-microscopy] |             | NPM   |
-| [@ohif/extension-dicom-pdf][extension-dicom-pdf]               |             | NPM   |
-| [@ohif/extension-vtk][extension-vtk]                           |             | NPM   |
+| Name                                                           | Description                                             | Links                  |
+| -------------------------------------------------------------- | ------------------------------------------------------- | ---------------------- |
+| [@ohif/extension-cornestone][extension-cornerstone]            | 2D image viewing, annotation, and segementation tools   | [NPM][cornerstone-npm] |
+| [@ohif/extension-dicom-html][extension-dicom-html]             | Support for viewing DICOM SR as rendered HTML           | [NPM][html-npm]        |
+| [@ohif/extension-dicom-microscopy][extension-dicom-microscopy] | Whole slide microscopy viewing                          | [NPM][microscopy-npm]  |
+| [@ohif/extension-dicom-pdf][extension-dicom-pdf]               | View DICOM wrapped PDFs in a viewport                   | [NPM][pdf-npm]         |
+| [@ohif/extension-vtk][extension-vtk]                           | Volume rendering, reconstruction, and 3D visualizations | [NPM][vtk-npm]         |
 
 ## Acknowledgments
 
@@ -273,7 +273,6 @@ MIT © [OHIF](https://github.com/OHIF)
 [netlify-image]: https://api.netlify.com/api/v1/badges/a5d369ab-18a6-41c3-bcde-83805205ac7f/deploy-status
 [netlify-url]: https://app.netlify.com/sites/ohif/deploys
 [all-contributors-image]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
-[contributing-url]: https://github.com/OHIF/Viewers/blob/master/CONTRIBUTING.md
 [circleci-image]: https://circleci.com/gh/OHIF/Viewers.svg?style=svg
 [circleci-url]: https://circleci.com/gh/OHIF/Viewers
 [codecov-image]: https://codecov.io/gh/OHIF/Viewers/branch/master/graph/badge.svg
@@ -290,6 +289,8 @@ MIT © [OHIF](https://github.com/OHIF)
 [docker-image-url]: https://hub.docker.com/r/ohif/viewer
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE
+[percy-image]: https://percy.io/static/images/percy-badge.svg
+[percy-url]: https://percy.io/Open-Health-Imaging-Foundation/OHIF-Viewer
 <!-- Links -->
 [monorepo]: https://en.wikipedia.org/wiki/Monorepo
 [how-to-fork]: https://help.github.com/en/articles/fork-a-repo
@@ -304,13 +305,22 @@ MIT © [OHIF](https://github.com/OHIF)
 [extensions-url]: https://docs.ohif.org/advanced/extensions.html
 <!-- Platform -->
 [platform-core]: platform/core/README.md
+[core-npm]: https://www.npmjs.com/package/@ohif/core
 [platform-i18n]: platform/i18n/README.md
+[i18n-npm]: https://www.npmjs.com/package/@ohif/i18n
 [platform-ui]: platform/ui/README.md
+[ui-npm]: https://www.npmjs.com/package/@ohif/ui
 [platform-viewer]: platform/viewer/README.md
+[viewer-npm]: https://www.npmjs.com/package/@ohif/viewer
 <!-- Extensions -->
 [extension-cornerstone]: extensions/cornerstone/README.md
+[cornerstone-npm]: https://www.npmjs.com/package/@ohif/extension-cornerstone
 [extension-dicom-html]: extensions/dicom-html/README.md
+[html-npm]: https://www.npmjs.com/package/@ohif/extension-dicom-html
 [extension-dicom-microscopy]: extensions/dicom-microscopy/README.md
+[microscopy-npm]: https://www.npmjs.com/package/@ohif/extension-dicom-microscopy
 [extension-dicom-pdf]: extensions/dicom-pdf/README.md
+[pdf-npm]: https://www.npmjs.com/package/@ohif/extension-dicom-pdf
 [extension-vtk]: extensions/vtk/README.md
+[vtk-npm]: https://www.npmjs.com/package/@ohif/extension-vtk
 <!-- prettier-ignore-end -->

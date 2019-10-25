@@ -3,8 +3,6 @@
 // - Include SVG Source/Inline?
 // - By URL, or own component?
 
-// TODO: `ohif-core` toolbar builder?
-
 // What KINDS of toolbar buttons do we have...
 // - One's that dispatch commands
 // - One's that set tool's active
@@ -70,6 +68,15 @@ const definitions = [
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
     commandOptions: { toolName: 'Length' },
+  },
+  {
+    id: 'ArrowAnnotate',
+    label: 'Annotate',
+    icon: 'measure-non-target',
+    //
+    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+    commandName: 'setToolActive',
+    commandOptions: { toolName: 'ArrowAnnotate' },
   },
   {
     id: 'Angle',
@@ -187,6 +194,24 @@ const definitions = [
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'clearAnnotations',
+      },
+      {
+        id: 'Bidirectional',
+        label: 'Bidirectional',
+        icon: 'measure-target',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Bidirectional' },
+      },
+      {
+        id: 'Eraser',
+        label: 'Eraser',
+        icon: 'eraser',
+        //
+        type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+        commandName: 'setToolActive',
+        commandOptions: { toolName: 'Eraser' },
       },
     ],
   },

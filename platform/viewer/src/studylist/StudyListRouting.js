@@ -1,37 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import queryString from 'query-string';
 import ConnectedStudyList from './ConnectedStudyList';
 
-// TODO: Move to @ohif/ui
+import OHIF from '@ohif/core';
+const { urlUtil: UrlUtil } = OHIF.utils;
 
-function toLowerCaseFirstLetter(word) {
-  return word[0].toLowerCase() + word.slice(1);
-}
-
-function getFilters({ search }) {
-  const searchParameters = queryString.parse(search);
-  const filters = {};
-
-  Object.entries(searchParameters).forEach(([key, value]) => {
-    filters[toLowerCaseFirstLetter(key)] = value;
-  });
-
-  return filters;
-}
+// Contexts
+import AppContext from '../context/AppContext';
 
 function StudyListRouting({ location }) {
-  const filters = location ? getFilters(location) : undefined;
+  const { appConfig = {} } = useContext(AppContext);
+
+  const filters = UrlUtil.queryString.getQueryFilters(location);
 
   let studyListFunctionsEnabled = false;
-  if (window.config && window.config.studyListFunctionsEnabled) {
-    studyListFunctionsEnabled = window.config.studyListFunctionsEnabled;
+  if (appConfig.studyListFunctionsEnabled) {
+    studyListFunctionsEnabled = appConfig.studyListFunctionsEnabled;
   }
-  return <ConnectedStudyList
-    filters={filters}
-    studyListFunctionsEnabled={studyListFunctionsEnabled}
-  />;
+  return (
+    <ConnectedStudyList
+      filters={filters}
+      studyListFunctionsEnabled={studyListFunctionsEnabled}
+    />
+  );
 }
 
 StudyListRouting.propTypes = {
